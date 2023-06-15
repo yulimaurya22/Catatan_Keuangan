@@ -22,7 +22,7 @@
         android:id="@+id/nu"
         android:layout_width="248dp"
         android:layout_height="260dp"
-        android:src="@drawable/splash" />
+        android:src="@drawable/gg" />
 
 
 </LinearLayout>

@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.yulia.catatankeuangan'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.yulia.catatankeuangan"
@@ -29,6 +29,9 @@ android {
 }
 
 dependencies {
+    def room_version = "2.3.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
