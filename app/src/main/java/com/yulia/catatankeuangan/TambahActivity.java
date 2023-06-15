@@ -7,9 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.yulia.catatankeuangan.database.AppDatabase;
+import com.yulia.catatankeuangan.database.entitas.User;
+
 public class TambahActivity extends AppCompatActivity {
     private EditText editTanggal, editPengeluaran, editTotal;
     private Button btnSave;
+    private AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,10 +23,17 @@ public class TambahActivity extends AppCompatActivity {
         editPengeluaran = findViewById(R.id.pengeluaran);
         editTotal = findViewById(R.id.total);
 
+        database = AppDatabase.getInstance(getApplicationContext());
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                User user = new User();
+                user.pengeluaran = editPengeluaran.getText().toString();
+                user.tanggal = editTanggal.getText().toString();
+                user.total = editTotal.getText().toString();
+                database.UserDao().insertAll(user);
+                finish();
             }
         });
     }

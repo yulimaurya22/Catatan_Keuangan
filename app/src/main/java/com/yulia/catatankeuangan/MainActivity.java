@@ -11,15 +11,20 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.yulia.catatankeuangan.database.AppDatabase;
+
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Button btnTambah;
+    private AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catatan);
         btnTambah = findViewById(R.id.btn_tambah);
+
+        database = AppDatabase.getInstance(getApplicationContext());
 
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
