@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.yulia.catatankeuangan.adapter.UserAdapter;
 import com.yulia.catatankeuangan.database.AppDatabase;
 
 public class catatan extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Button btnTambah;
     private AppDatabase database;
+    private UserAdapter userAdapter;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -24,6 +26,7 @@ public class catatan extends AppCompatActivity {
         btnTambah = findViewById(R.id.btn_tambah);
 
         database = AppDatabase.getInstance(getApplicationContext());
+        userAdapter = new UserAdapter(getApplicationContext(), database.UserDao().getAll());
 
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override

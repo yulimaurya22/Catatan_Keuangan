@@ -13,4 +13,5 @@ public class User {
     public String pengeluaran;
 
     public String total;
+
 }
