@@ -22,6 +22,7 @@ public class TambahActivity extends AppCompatActivity {
         editTanggal = findViewById(R.id.tanggal);
         editPengeluaran = findViewById(R.id.pengeluaran);
         editTotal = findViewById(R.id.total);
+        btnSave = findViewById(R.id.btn_save);
 
         database = AppDatabase.getInstance(getApplicationContext());
 
