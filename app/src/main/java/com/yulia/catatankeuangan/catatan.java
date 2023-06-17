@@ -9,15 +9,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListAdapter;
 
 import com.yulia.catatankeuangan.adapter.UserAdapter;
 import com.yulia.catatankeuangan.database.AppDatabase;
+import com.yulia.catatankeuangan.database.entitas.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class catatan extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Button btnTambah;
     private AppDatabase database;
     private UserAdapter userAdapter;
+    private List<User> list = new ArrayList<>();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -28,7 +34,9 @@ public class catatan extends AppCompatActivity {
         btnTambah = findViewById(R.id.btn_tambah);
 
         database = AppDatabase.getInstance(getApplicationContext());
-        userAdapter = new UserAdapter(getApplicationContext(), database.UserDao().getAll());
+        list.clear();
+        list.addAll(database.UserDao().getAll());
+        userAdapter = new UserAdapter(getApplicationContext(), list);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -46,5 +54,7 @@ public class catatan extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
+        list.clear();
+        list.addAll(database.UserDao().getAll());
     }
 }
