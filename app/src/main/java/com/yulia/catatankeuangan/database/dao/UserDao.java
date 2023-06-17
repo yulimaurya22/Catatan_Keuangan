@@ -20,6 +20,9 @@ public interface UserDao {
     @Query("UPDATE user SET tanggal=:tanggal, pengeluaran=:pengeluaran, total=:total WHERE uid=:uid")
     void update(int uid, String tanggal, String pengeluaran, String total);
 
+    @Query("SELECT * FROM user WHERE uid=:uid")
+    User get(int uid);
+
     @Delete
     void delete(User user);
 }
