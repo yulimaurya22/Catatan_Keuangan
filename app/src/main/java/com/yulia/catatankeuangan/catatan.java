@@ -1,6 +1,7 @@
 package com.yulia.catatankeuangan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
@@ -23,10 +24,15 @@ public class catatan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catatan);
+        recyclerView = findViewById(R.id.recycler_view);
         btnTambah = findViewById(R.id.btn_tambah);
 
         database = AppDatabase.getInstance(getApplicationContext());
         userAdapter = new UserAdapter(getApplicationContext(), database.UserDao().getAll());
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(userAdapter);
 
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
