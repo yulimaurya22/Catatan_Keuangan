@@ -50,7 +50,9 @@ public class catatan extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (i){
                             case 0:
-                                //
+                                Intent intent = new Intent(catatan.this, TambahActivity.class);
+                                intent.putExtra("uid", list.get(position).uid);
+                                startActivity(intent);
                             break;
                             case 1:
                                 User user = list.get(position);
@@ -74,6 +76,7 @@ public class catatan extends AppCompatActivity {
 
             }
         });
+        dialog.show();
     }
 
     @Override

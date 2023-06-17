@@ -17,6 +17,9 @@ public interface UserDao {
     @Query("INSERT INTO user(tanggal,pengeluaran,total) VALUES(:tanggal,:pengeluaran,:total)")
     void insertAll(String tanggal, String pengeluaran, String total);
 
+    @Query("UPDATE user SET tanggal=:tanggal, pengeluaran=:pengeluaran, total=:total WHERE uid=:uid")
+    void update(int uid, String tanggal, String pengeluaran, String total);
+
     @Delete
     void delete(User user);
 }
