@@ -1,10 +1,12 @@
 package com.yulia.catatankeuangan;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +26,7 @@ public class catatan extends AppCompatActivity {
     private AppDatabase database;
     private UserAdapter userAdapter;
     private List<User> list = new ArrayList<>();
+    private AlertDialog.Builder dialog;
 
 
     @Override
@@ -37,6 +40,28 @@ public class catatan extends AppCompatActivity {
         list.clear();
         list.addAll(database.UserDao().getAll());
         userAdapter = new UserAdapter(getApplicationContext(), list);
+        userAdapter.setDialog(new UserAdapter.Dialog() {
+            @Override
+            public void onClick(int position) {
+                final CharSequence[] dialogItem = {"Edit", "Hapus"};
+                dialog = new AlertDialog.Builder(catatan.this);
+                dialog.setItems(dialogItem, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (i){
+                            case 0:
+                                //
+                            break;
+                            case 1:
+                                User user = list.get(position);
+                                database.UserDao().delete(user);
+                                onStart();
+                                break;
+                        }
+                    }
+                });
+            }
+        });
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
