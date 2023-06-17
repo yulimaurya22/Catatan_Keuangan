@@ -56,5 +56,6 @@ public class catatan extends AppCompatActivity {
         super.onStart();
         list.clear();
         list.addAll(database.UserDao().getAll());
+        userAdapter.notifyDataSetChanged();
     }
 }
