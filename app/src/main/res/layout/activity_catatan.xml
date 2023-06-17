@@ -43,6 +43,7 @@
         android:layout_marginRight="15dp"
         android:background="#DDD0C4">
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Recycler_View"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

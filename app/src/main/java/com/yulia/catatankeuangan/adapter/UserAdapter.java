@@ -17,6 +17,14 @@ import java.util.List;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewAdapter> {
     private List<User> list;
     private Context context;
+    private Dialog dialog;
+
+    public interface Dialog {
+        void onClick(int position);
+    }
+    public void setDialog(Dialog dialog) {
+        this.dialog = dialog;
+    }
 
     public UserAdapter(Context context, List<User> list){
         this.context = context;
@@ -32,8 +40,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewAdapter> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewAdapter holder, int position) {
-        holder.pengeluaran.setText(list.get(position).pengeluaran);
         holder.tanggal.setText(list.get(position).tanggal);
+        holder.pengeluaran.setText(list.get(position).pengeluaran);
         holder.total.setText(list.get(position).total);
 
     }
@@ -44,13 +52,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewAdapter> {
     }
 
     class ViewAdapter extends RecyclerView.ViewHolder{
-        TextView pengeluaran, tanggal, total;
+        TextView tanggal, pengeluaran,total;
 
         private ViewAdapter(@NonNull View itemView) {
             super(itemView);
-            pengeluaran = itemView.findViewById(R.id.pengeluaran);
-            tanggal = itemView.findViewById(R.id.tanggal);
-            total = itemView.findViewById(R.id.total);
+            tanggal = itemView.findViewById(R.id.tgl);
+            pengeluaran = itemView.findViewById(R.id.pengeluarn);
+            total = itemView.findViewById(R.id.ttl);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (dialog!=null){
+                        dialog.onClick(getLayoutPosition());
+                    }
+                }
+            });
         }
     }
 }

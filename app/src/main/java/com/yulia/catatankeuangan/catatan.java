@@ -25,12 +25,12 @@ public class catatan extends AppCompatActivity {
     private UserAdapter userAdapter;
     private List<User> list = new ArrayList<>();
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catatan);
-        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.Recycler_View);
         btnTambah = findViewById(R.id.btn_tambah);
 
         database = AppDatabase.getInstance(getApplicationContext());

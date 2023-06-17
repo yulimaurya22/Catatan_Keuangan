@@ -14,8 +14,8 @@ public interface UserDao {
     @Query("SELECT * FROM user")
     List<User> getAll();
 
-    @Insert
-    void insertAll(User... users);
+    @Query("INSERT INTO user(tanggal,pengeluaran,total) VALUES(:tanggal,:pengeluaran,:total)")
+    void insertAll(String tanggal, String pengeluaran, String total);
 
     @Delete
     void delete(User user);

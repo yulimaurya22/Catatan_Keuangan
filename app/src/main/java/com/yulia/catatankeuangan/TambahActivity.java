@@ -30,10 +30,7 @@ public class TambahActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 User user = new User();
-                user.pengeluaran = editPengeluaran.getText().toString();
-                user.tanggal = editTanggal.getText().toString();
-                user.total = editTotal.getText().toString();
-                database.UserDao().insertAll(user);
+                database.UserDao().insertAll(editTanggal.getText().toString(), editPengeluaran.getText().toString(), editTotal.getText().toString());
                 finish();
             }
         });
