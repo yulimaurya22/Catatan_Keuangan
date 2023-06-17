@@ -42,4 +42,9 @@ public class catatan extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+    }
 }
