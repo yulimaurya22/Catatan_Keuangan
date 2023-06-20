@@ -29,11 +29,12 @@ public class catatan extends AppCompatActivity {
     private AlertDialog.Builder dialog;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catatan);
-        recyclerView = findViewById(R.id.Recycler_View);
+        recyclerView = findViewById(R.id.tabel);
         btnTambah = findViewById(R.id.btn_tambah);
 
         database = AppDatabase.getInstance(getApplicationContext());
@@ -62,10 +63,11 @@ public class catatan extends AppCompatActivity {
                         }
                     }
                 });
+                dialog.show();
             }
         });
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(userAdapter);
 

@@ -23,7 +23,7 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE uid=:uid")
     User get(int uid);
 
-    void insertAll(User... users);
+
 
     @Delete
     void delete(User user);

@@ -16,7 +16,7 @@ import com.yulia.catatankeuangan.database.entitas.User;
 @Database(entities = {User.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
-    private static AppDatabase sInstance;
+    private static volatile AppDatabase sInstance;
     private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 
     @VisibleForTesting

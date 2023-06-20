@@ -56,9 +56,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewAdapter> {
 
         private ViewAdapter(@NonNull View itemView) {
             super(itemView);
-            tanggal = itemView.findViewById(R.id.tgl);
-            pengeluaran = itemView.findViewById(R.id.pengeluarn);
-            total = itemView.findViewById(R.id.ttl);
+            tanggal = itemView.findViewById(R.id.tanggal);
+            pengeluaran = itemView.findViewById(R.id.pengeluaran);
+            total = itemView.findViewById(R.id.total);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
