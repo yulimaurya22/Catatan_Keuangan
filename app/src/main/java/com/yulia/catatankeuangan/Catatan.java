@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListAdapter;
 
 import com.yulia.catatankeuangan.adapter.UserAdapter;
 import com.yulia.catatankeuangan.database.AppDatabase;
@@ -20,7 +19,7 @@ import com.yulia.catatankeuangan.database.entitas.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class catatan extends AppCompatActivity {
+public class Catatan extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Button btnTambah;
     private AppDatabase database;
@@ -45,13 +44,13 @@ public class catatan extends AppCompatActivity {
             @Override
             public void onClick(int position) {
                 final CharSequence[] dialogItem = {"Edit", "Hapus"};
-                dialog = new AlertDialog.Builder(catatan.this);
+                dialog = new AlertDialog.Builder(Catatan.this);
                 dialog.setItems(dialogItem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (i){
                             case 0:
-                                Intent intent = new Intent(catatan.this, TambahActivity.class);
+                                Intent intent = new Intent(Catatan.this, TambahActivity.class);
                                 intent.putExtra("uid", list.get(position).uid);
                                 startActivity(intent);
                             break;
@@ -74,11 +73,11 @@ public class catatan extends AppCompatActivity {
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(catatan.this, TambahActivity.class));
+                startActivity(new Intent(Catatan.this, TambahActivity.class));
 
             }
         });
-        dialog.show();
+//        dialog.show();
     }
 
     @Override
