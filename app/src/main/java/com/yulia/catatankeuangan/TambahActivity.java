@@ -22,6 +22,9 @@ public class TambahActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah);
+
+        getSupportActionBar().setTitle("Detail Pengeluaran");
+
         editTanggal = findViewById(R.id.tanggal);
         editPengeluaran = findViewById(R.id.pengeluaran);
         editTotal = findViewById(R.id.total);

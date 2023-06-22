@@ -33,6 +33,9 @@ public class Catatan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catatan);
+
+        getSupportActionBar().setTitle("Menu List");
+
         recyclerView = findViewById(R.id.tabel);
         btnTambah = findViewById(R.id.btn_tambah);
 

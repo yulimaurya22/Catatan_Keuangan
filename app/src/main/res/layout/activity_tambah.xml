@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DA9BAC8D"
+    android:background="#BFAEBAA4"
     tools:context=".TambahActivity">
 
     <LinearLayout
