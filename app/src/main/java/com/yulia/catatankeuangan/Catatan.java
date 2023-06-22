@@ -91,4 +91,22 @@ public class Catatan extends AppCompatActivity {
         list.addAll(database.UserDao().getAll());
         userAdapter.notifyDataSetChanged();
     }
+
+    //menambahkan alert dialog saat keluar dari aplikasi
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+
+    }
 }
