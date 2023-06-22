@@ -24,6 +24,7 @@ public class TambahActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tambah);
 
         getSupportActionBar().setTitle("Detail Pengeluaran");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true) ;
 
         editTanggal = findViewById(R.id.tanggal);
         editPengeluaran = findViewById(R.id.pengeluaran);
