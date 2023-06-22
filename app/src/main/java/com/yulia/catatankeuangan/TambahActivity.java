@@ -2,7 +2,10 @@ package com.yulia.catatankeuangan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -54,6 +57,15 @@ public class TambahActivity extends AppCompatActivity {
                 }else{
                     database.UserDao().insertAll(editTanggal.getText().toString(), editPengeluaran.getText().toString(), editTotal.getText().toString());
                 }
+
+                // menambahkan Notifikasi
+                Intent intent = new Intent(getApplicationContext(), Catatan.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0,
+                        intent, PendingIntent.FLAG_ONE_SHOT);
+
+                Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 finish();
             }
         });
