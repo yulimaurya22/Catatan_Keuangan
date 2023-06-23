@@ -2,11 +2,13 @@ package com.yulia.catatankeuangan;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -24,6 +26,9 @@ public class TambahActivity extends AppCompatActivity {
     private AppDatabase database;
     private int uid = 0;
     private boolean isEdit = false;
+    private CustomReceiver mReceiver = new CustomReceiver();
+    private static final String ACTION_CUSTOM_BROADCAST =
+            BuildConfig.APPLICATION_ID + ".ACTION_CUSTOM_BROADCAST";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,25 +47,40 @@ public class TambahActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         uid = intent.getIntExtra("uid", 0);
-        if (uid>0){
+        if (uid > 0) {
             isEdit = true;
             User user = database.UserDao().get(uid);
             editTanggal.setText(user.tanggal);
             editPengeluaran.setText(user.pengeluaran);
             editTotal.setText(user.total);
 
-        }else {
+        } else {
             isEdit = false;
         }
 
+        //broadcast receiver
+        IntentFilter filter = new IntentFilter();
+
+        filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+        filter.addAction(Intent.ACTION_POWER_CONNECTED);
+
+        this.registerReceiver(mReceiver, filter);
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(mReceiver,
+                        new IntentFilter(ACTION_CUSTOM_BROADCAST));
+
+
         btnSave.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                if (isEdit){
-                    database.UserDao().update(uid,editTanggal.getText().toString(), editPengeluaran.getText().toString(), editTotal.getText().toString() );
-                }else{
+
+                if (isEdit) {
+                    database.UserDao().update(uid, editTanggal.getText().toString(), editPengeluaran.getText().toString(), editTotal.getText().toString());
+                } else {
                     database.UserDao().insertAll(editTanggal.getText().toString(), editPengeluaran.getText().toString(), editTotal.getText().toString());
                 }
+
 
                 // menambahkan Notifikasi
                 Intent intent = new Intent(getApplicationContext(), Catatan.class);
@@ -71,23 +91,38 @@ public class TambahActivity extends AppCompatActivity {
 
                 Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-                NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(),"CH1")
+                NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), "CH1")
                         .setSmallIcon(R.drawable.ic_launcher_background)
-                                .setContentText("Selamat, Data Anda Berhasil Disimpan")
-                                        .setContentTitle("Notifikasi")
-                                                .setAutoCancel(true)
-                                                        .setSound(defaultSoundUri)
-                                                                .setContentIntent(pendingIntent);
+                        .setContentText("Selamat, Data Anda Berhasil Disimpan")
+                        .setContentTitle("Notifikasi")
+                        .setAutoCancel(true)
+                        .setSound(defaultSoundUri)
+                        .setContentIntent(pendingIntent);
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                NotificationChannel channel = new NotificationChannel("CH1", "Notifikasi", NotificationManager.IMPORTANCE_DEFAULT);
-                notificationManager.createNotificationChannel(channel);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel channel = new NotificationChannel("CH1", "Notifikasi", NotificationManager.IMPORTANCE_DEFAULT);
+                    notificationManager.createNotificationChannel(channel);
                 }
 
                 notificationManager.notify(0, notificationBuilder.build());
+
                 finish();
+
             }
         });
     }
+
+        @Override
+        protected void onDestroy() {
+            // Unregister the receiver.
+            this.unregisterReceiver(mReceiver);
+            super.onDestroy();
+            LocalBroadcastManager.getInstance(this)
+                    .unregisterReceiver(mReceiver);
+        }
+
+
+
+
 }
