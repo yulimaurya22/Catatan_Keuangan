@@ -1,11 +1,15 @@
 package com.yulia.catatankeuangan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -66,6 +70,17 @@ public class TambahActivity extends AppCompatActivity {
                         intent, PendingIntent.FLAG_ONE_SHOT);
 
                 Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+                NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(),"CH1")
+                        .setSmallIcon(R.drawable.ic_launcher_background)
+                                .setContentText("Selamat, Data Anda Berhasil Disimpan")
+                                        .setContentTitle("Notifikasi")
+                                                .setAutoCancel(true)
+                                                        .setSound(defaultSoundUri)
+                                                                .setContentIntent(pendingIntent);
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+
                 finish();
             }
         });
