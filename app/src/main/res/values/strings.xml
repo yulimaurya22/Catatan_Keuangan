@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Catatan Keuangan</string>
+    <string name="unknown_intent_action">unknown intent action</string>
+    <string name="Power_connected">Power connected</string>
+    <string name="power_connected">power connected</string>
+    <string name="Power_disconnected">Power disconnected!</string>
+    <string name="Custom_Broadcast_Received">Data Berhasil Disimpan</string>
 </resources>
