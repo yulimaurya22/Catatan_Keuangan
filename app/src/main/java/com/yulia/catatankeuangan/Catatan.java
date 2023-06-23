@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.yulia.catatankeuangan.adapter.UserAdapter;
 import com.yulia.catatankeuangan.database.AppDatabase;
@@ -77,6 +78,9 @@ public class Catatan extends AppCompatActivity {
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // menambahkan Toast
+                Toast.makeText(Catatan.this, "Menambahkan Data", Toast.LENGTH_SHORT).show();
+
                 startActivity(new Intent(Catatan.this, TambahActivity.class));
 
             }
