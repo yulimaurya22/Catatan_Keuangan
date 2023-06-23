@@ -122,7 +122,11 @@ public class TambahActivity extends AppCompatActivity {
                     .unregisterReceiver(mReceiver);
         }
 
-
+    public void save(View view) {
+        Intent customBroadcastIntent = new Intent(ACTION_CUSTOM_BROADCAST);
+        LocalBroadcastManager.getInstance(this)
+                .sendBroadcast(customBroadcastIntent);
+    }
 
 
 }
