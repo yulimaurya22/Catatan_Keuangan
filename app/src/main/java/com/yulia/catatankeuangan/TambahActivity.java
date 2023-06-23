@@ -80,7 +80,12 @@ public class TambahActivity extends AppCompatActivity {
                                                                 .setContentIntent(pendingIntent);
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                NotificationChannel channel = new NotificationChannel("CH1", "Notifikasi", NotificationManager.IMPORTANCE_DEFAULT);
+                notificationManager.createNotificationChannel(channel);
+                }
 
+                notificationManager.notify(0, notificationBuilder.build());
                 finish();
             }
         });
