@@ -36,6 +36,18 @@ public class TambahActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah);
 
+        //broadcast receiver
+        IntentFilter filter = new IntentFilter();
+
+        filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+        filter.addAction(Intent.ACTION_POWER_CONNECTED);
+
+        this.registerReceiver(mReceiver, filter);
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(mReceiver,
+                        new IntentFilter(ACTION_CUSTOM_BROADCAST));
+
+
         getSupportActionBar().setTitle("Detail Pengeluaran");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //menambahkan tombol kembali
 
@@ -58,17 +70,6 @@ public class TambahActivity extends AppCompatActivity {
         } else {
             isEdit = false;
         }
-
-        //broadcast receiver
-        IntentFilter filter = new IntentFilter();
-
-        filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
-        filter.addAction(Intent.ACTION_POWER_CONNECTED);
-
-        this.registerReceiver(mReceiver, filter);
-        LocalBroadcastManager.getInstance(this)
-                .registerReceiver(mReceiver,
-                        new IntentFilter(ACTION_CUSTOM_BROADCAST));
 
 
         btnSave.setOnClickListener(new View.OnClickListener() {
