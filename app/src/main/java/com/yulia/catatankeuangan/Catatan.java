@@ -139,4 +139,10 @@ public class Catatan extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this)
                 .unregisterReceiver(mReceiver);
     }
+
+    public void alarm(View view) {
+        Intent intent = new Intent(Catatan.this, AlarmActivity.class);
+        startActivity(intent);
+
+    }
 }
