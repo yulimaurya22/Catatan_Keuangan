@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.yulia.catatankeuangan.database.AppDatabase;
 import com.yulia.catatankeuangan.database.entitas.User;
@@ -75,6 +76,9 @@ public class TambahActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                // menambahkan toast
+                Toast.makeText(TambahActivity.this, "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show();
+
                 if (isEdit) {
                     database.UserDao().update(uid, editTanggal.getText().toString(), editPengeluaran.getText().toString(), editTotal.getText().toString());
                 } else {
@@ -92,7 +96,7 @@ public class TambahActivity extends AppCompatActivity {
                 Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
                 NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), "CH1")
-                        .setSmallIcon(R.drawable.ic_launcher_background)
+                        .setSmallIcon(R.drawable.gg)
                         .setContentText("Selamat, Data Anda Berhasil Disimpan")
                         .setContentTitle("Notifikasi")
                         .setAutoCancel(true)
