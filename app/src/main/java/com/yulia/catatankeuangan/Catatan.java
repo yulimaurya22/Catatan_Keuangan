@@ -2,15 +2,18 @@ package com.yulia.catatankeuangan;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.yulia.catatankeuangan.adapter.UserAdapter;
 import com.yulia.catatankeuangan.database.AppDatabase;
@@ -26,6 +29,9 @@ public class Catatan extends AppCompatActivity {
     private UserAdapter userAdapter;
     private List<User> list = new ArrayList<>();
     private AlertDialog.Builder dialog;
+    private CustomReceiver mReceiver = new CustomReceiver();
+    private static final String ACTION_CUSTOM_BROADCAST =
+            BuildConfig.APPLICATION_ID + ".ACTION_CUSTOM_BROADCAST";
 
 
     @SuppressLint("MissingInflatedId")
@@ -33,6 +39,17 @@ public class Catatan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catatan);
+
+        //broadcast receiver
+        IntentFilter filter = new IntentFilter();
+
+        filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+        filter.addAction(Intent.ACTION_POWER_CONNECTED);
+
+        this.registerReceiver(mReceiver, filter);
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(mReceiver,
+                        new IntentFilter(ACTION_CUSTOM_BROADCAST));
 
 
         getSupportActionBar().setTitle("Menu List");
@@ -77,6 +94,10 @@ public class Catatan extends AppCompatActivity {
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // menambahkan toast
+                Toast.makeText(Catatan.this, "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show();
+
                 startActivity(new Intent(Catatan.this, TambahActivity.class));
 
             }
@@ -108,5 +129,14 @@ public class Catatan extends AppCompatActivity {
                 .setNegativeButton("No", null)
                 .show();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        // Unregister the receiver.
+        this.unregisterReceiver(mReceiver);
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(this)
+                .unregisterReceiver(mReceiver);
     }
 }
