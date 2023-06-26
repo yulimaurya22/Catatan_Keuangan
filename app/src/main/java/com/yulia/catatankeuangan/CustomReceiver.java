@@ -40,5 +40,20 @@ public class CustomReceiver extends BroadcastReceiver {
             Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show();
 
         }
+
+        Intent i = new Intent(context, AlarmActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, i, 0);
+
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(2000);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "Notify")
+                .setContentText("Alarm Reminders")
+                .setContentText("Hey, Wake Up!")
+                .setAutoCancel(true)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent);
     }
 }
