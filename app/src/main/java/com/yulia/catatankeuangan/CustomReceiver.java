@@ -55,5 +55,13 @@ public class CustomReceiver extends BroadcastReceiver {
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
+        notificationManagerCompat.notify(200, builder.build());
+
+        Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+
+        Ringtone r = RingtoneManager.getRingtone(context, sound);
+        r.play();
     }
 }

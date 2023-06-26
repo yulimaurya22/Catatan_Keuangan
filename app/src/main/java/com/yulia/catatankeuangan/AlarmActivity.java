@@ -45,9 +45,21 @@ public class AlarmActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(AlarmActivity.this, "Set Alarm" + jam + " : " + menit, Toast.LENGTH_SHORT).show();
                 setTimer();
+                notification();
             }
         });
     }
+
+    private void notification() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "Alarm Reminders";
+            String description = "Hay, Wake Up!";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+        }
+    }
+
     private void setTimer() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Date date = new Date();
