@@ -1,9 +1,17 @@
 package com.yulia.catatankeuangan;
 
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Vibrator;
 import android.widget.Toast;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 public class CustomReceiver extends BroadcastReceiver {
     private static final String ACTION_CUSTOM_BROADCAST =
@@ -11,6 +19,7 @@ public class CustomReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
         String intentAction = intent.getAction();
 
         if (intentAction != null) {
