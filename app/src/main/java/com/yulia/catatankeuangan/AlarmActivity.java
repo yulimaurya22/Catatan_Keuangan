@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.INotificationSideChannel;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
@@ -57,6 +58,11 @@ public class AlarmActivity extends AppCompatActivity {
             String description = "Hay, Wake Up!";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
 
+            NotificationChannel channel = new NotificationChannel("Notify", name,importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
         }
     }
 
