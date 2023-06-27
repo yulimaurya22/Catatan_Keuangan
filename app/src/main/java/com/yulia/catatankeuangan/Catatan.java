@@ -96,7 +96,7 @@ public class Catatan extends AppCompatActivity {
             public void onClick(View view) {
 
                 // menambahkan toast
-                Toast.makeText(Catatan.this, "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Catatan.this, "Menambah Data", Toast.LENGTH_SHORT).show();
 
                 startActivity(new Intent(Catatan.this, TambahActivity.class));
 
