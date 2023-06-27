@@ -24,6 +24,9 @@ public class AlarmActivity extends AppCompatActivity {
     private TimePicker timePicker;
     private Button btn_timer;
     private int jam, menit;
+    private Button btn_cancel;
+    private AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class AlarmActivity extends AppCompatActivity {
 
         timePicker = findViewById(R.id.timePicker);
         btn_timer = findViewById(R.id.btn_timer);
+        btn_cancel = findViewById(R.id.btn_cancel);
 
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
@@ -49,6 +53,28 @@ public class AlarmActivity extends AppCompatActivity {
                 notification();
             }
         });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelAlarm();
+
+            }
+        });
+    }
+
+    private void cancelAlarm() {
+
+        Intent intent = new Intent(this, CustomReceiver.class);
+
+        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        if (alarmManager == null){
+
+            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        }
+
+        alarmManager.cancel(pendingIntent);
+        Toast.makeText(this, "Alarm Cancelled", Toast.LENGTH_SHORT).show();
     }
 
     private void notification() {
@@ -88,4 +114,5 @@ public class AlarmActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(AlarmActivity.this, 0, i,0);
         alarmManager.set(AlarmManager.RTC_WAKEUP, cal_alarm.getTimeInMillis(),pendingIntent);
     }
+
 }
