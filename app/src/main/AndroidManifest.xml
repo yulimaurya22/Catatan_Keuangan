@@ -54,7 +54,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <receiver
+        <activity
             android:name=".CustomReceiver"
             android:enabled="true"
             android:exported="true">
@@ -62,11 +62,9 @@
                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
-        </receiver>
+        </activity>
 
         <receiver android:name=".CustomReceiver"/>
     </application>
-
-
 
 </manifest>

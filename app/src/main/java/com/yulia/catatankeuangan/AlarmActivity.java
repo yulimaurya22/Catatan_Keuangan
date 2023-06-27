@@ -88,4 +88,6 @@ public class AlarmActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(AlarmActivity.this, 0, i,0);
         alarmManager.set(AlarmManager.RTC_WAKEUP, cal_alarm.getTimeInMillis(),pendingIntent);
     }
-}
+
+
+    }
