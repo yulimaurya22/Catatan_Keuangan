@@ -33,6 +33,9 @@ public class AlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
 
+        getSupportActionBar().setTitle("Alarm");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         timePicker = findViewById(R.id.timePicker);
         btn_timer = findViewById(R.id.btn_timer);
         btn_cancel = findViewById(R.id.btn_cancel);
