@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.yulia.catatankeuangan.adapter.UserAdapter;
 import com.yulia.catatankeuangan.database.AppDatabase;
 import com.yulia.catatankeuangan.database.entitas.User;
@@ -39,6 +40,15 @@ public class Catatan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catatan);
+
+        //setting darkmode
+        FloatingActionButton fab = findViewById(R.id.btn_setting);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ThemeActivity.class));
+            }
+        });
 
         //broadcast receiver
         IntentFilter filter = new IntentFilter();
