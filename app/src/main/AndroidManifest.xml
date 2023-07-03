@@ -2,11 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -19,6 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CatatanKeuangan"
         tools:targetApi="31">
+        <activity
+            android:name=".ThemeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".AlarmActivity"
             android:exported="false">
@@ -69,7 +74,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".CustomReceiver"/>
+        <receiver android:name=".CustomReceiver" />
     </application>
 
 </manifest>

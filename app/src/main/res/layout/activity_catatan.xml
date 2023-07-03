@@ -27,7 +27,7 @@
             android:fontFamily="serif"
             android:text="Catatan
             \nKeuangan"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="30dp"
             android:textStyle="bold">
 
@@ -42,13 +42,26 @@
         android:layout_marginTop="130dp"
         android:layout_marginRight="13dp"
         android:layout_marginBottom="60dp"
-        android:background="#DDD0C4">
+        android:background="?attr/colorSecondary">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tabel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#85ADB6BF" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="setting"
+            app:backgroundTint="?attr/colorPrimary"
+            android:src="@drawable/ic_dark"
+            android:layout_alignRight="@+id/tabel"
+            android:layout_alignBottom="@id/tabel"
+            app:tint="@color/white"/>
 
 
 

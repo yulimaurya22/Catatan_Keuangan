@@ -5,4 +5,6 @@
     <string name="power_connected">power connected</string>
     <string name="Power_disconnected">Power disconnected!</string>
     <string name="Custom_Broadcast_Received">Data Berhasil Disimpan</string>
+    <string name="setting">setting</string>
+    <string name="dark_mode_text">Enable/Disable dark mode</string>
 </resources>
